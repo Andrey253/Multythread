@@ -53,7 +53,6 @@ class ExampleFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        AndroidSchedulers.mainThread()
         thread.start()
 
         exampleHandlerThread.start()
