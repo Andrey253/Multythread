@@ -7,7 +7,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         ExampleLooper.prepareMainLooper()
+        ExampleLooper.mainLoop()
 //        ExampleLooper.loop()
-        ExampleLooper.exampleLoop()
     }
 }

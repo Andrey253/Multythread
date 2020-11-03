@@ -32,7 +32,7 @@ class ExampleLooper {
             }
         }
 
-        fun exampleLoop() {
+        fun mainLoop() {
             val looper = getLooper()
             val queue = looper.queue
 

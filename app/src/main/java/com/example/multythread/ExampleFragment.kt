@@ -8,9 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.work.Constraints
+import androidx.work.NetworkType
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.main_fragment.*
 import java.lang.IllegalArgumentException
+import java.util.concurrent.TimeUnit
 
 class ExampleFragment : Fragment() {
 
@@ -59,5 +64,20 @@ class ExampleFragment : Fragment() {
         exampleHandlerThread.getHandler().post {
             Log.d("ExampleHandlerThread", "Some work")
         }
+        startWork()
+    }
+
+    private fun startWork() {
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .setRequiresCharging(true)
+            .build()
+
+        val request = OneTimeWorkRequestBuilder<ExampleWorker>()
+            .setConstraints(constraints)
+            .setInitialDelay(1, TimeUnit.MINUTES)
+            .build()
+
+        WorkManager.getInstance(requireContext()).enqueue(request)
     }
 }
