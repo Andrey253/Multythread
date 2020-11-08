@@ -15,14 +15,14 @@ open class ExampleHandler(
         queue.add(message)
     }
 
-    fun sendEmptyMessage(what: Int) {
-        val message = ExampleMessage()
-        message.target = this
-        message.what = what
-
-        val queue = looper.queue
-        queue.add(message)
-    }
+//    fun sendEmptyMessage(what: Int) {
+//        val message = ExampleMessage()
+//        message.target = this
+//        message.what = what
+//
+//        val queue = looper.queue
+//        queue.add(message)
+//    }
 
     fun dispatchMessage(message: ExampleMessage) {
         if (message.callback != null) {
